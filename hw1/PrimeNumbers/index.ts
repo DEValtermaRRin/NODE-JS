@@ -1,0 +1,1 @@
+export { appNumbers } from './primeNumbers'

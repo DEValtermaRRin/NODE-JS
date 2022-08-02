@@ -42,19 +42,21 @@ function renderNumbers(arr: number[]) {
 // rl.question('Введите число:  ', (answer: string) => {
 // });
 
-console.log('Введите число:  ');
-rl.on('line', (answer: string) => {
-  let num = Math.round(Number(answer));
-  if (isNaN(num)) {
-    console.log(colors.red('Вы ввели не число'));
-    rl.close();
-  }
-  if (num === 1 || num <= 0) {
-    console.log(colors.red('Простых чисел в указанном диапазоне нет'));
-    rl.close();
-  } else {
-    foundPrimeNumbers(num);
-    renderNumbers(primeNumbers);
-  }
-  // rl.close(); // раскоменнтировать, если нужно однократное выполнение кода
-});
+export const appNumbers = () => {
+  console.log('Введите число:  ');
+  rl.on('line', (answer: string) => {
+    let num = Math.round(Number(answer));
+    if (isNaN(num)) {
+      console.log(colors.red('Вы ввели не число'));
+      rl.close();
+    }
+    if (num === 1 || num <= 0) {
+      console.log(colors.red('Простых чисел в указанном диапазоне нет'));
+      rl.close();
+    } else {
+      foundPrimeNumbers(num);
+      renderNumbers(primeNumbers);
+    }
+    // rl.close(); // раскоменнтировать, если нужно однократное выполнение кода
+  });
+};
