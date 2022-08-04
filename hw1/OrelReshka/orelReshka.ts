@@ -2,16 +2,16 @@ import readline from 'readline';
 import colors from 'colors';
 
 // знаю-знаю, нужно вводить алиасы))
-import { appendFileLog, gameResult, isFileExist } from '../../constants';
+import { appendFileLog, gameResult, isFileExist } from '../../functions';
 
 const rl = readline.createInterface({
   input: process.stdin,
 });
 
-const num = () => Math.round(Math.random() + 1);
+export const num = () => Math.round(Math.random() + 1);
 let arrToCheck: number[] = [];
 
-function checkAnswer(answer: string) {
+export function checkAnswer(answer: string) {
   let userNum;
   userNum = Number(answer);
   if (isNaN(userNum) && answer !== 'exit') {
@@ -30,7 +30,7 @@ function checkAnswer(answer: string) {
   return userNum;
 }
 
-function checkingArr(arr: number[]) {
+export function checkingArr(arr: number[]) {
   arr[0] === 1
     ? console.log('Компьютер вытащил Орла'.blue)
     : console.log('Компьютер вытащил Решку'.blue);

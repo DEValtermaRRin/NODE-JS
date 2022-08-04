@@ -18,7 +18,7 @@ const dictionary = {
 
 export function dateParce(date: string): string {
   if (!regexp.test(date)) {
-    console.log(colors.white('Вы ввели неверный формат даты').bgRed);
+    console.log('Вы ввели неверный формат даты'.bgRed);
   }
   let userDate = date.split('-');
   return `${userDate[1]} ${userDate[0]} ${userDate[2]} 00:00:00`;
