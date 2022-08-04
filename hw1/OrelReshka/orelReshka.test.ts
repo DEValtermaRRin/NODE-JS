@@ -13,7 +13,9 @@ describe('checkAnswer', () => {
   it('console.log Вы ввели не число for asd', () => {
     console.log = jest.fn();
     checkAnswer('asd');
-    expect(console.log).toHaveBeenCalledWith('Вы ввели не число. Игра окончена'.red);
+    expect(console.log).toHaveBeenCalledWith(
+      'Вы ввели не число. Игра окончена'.red,
+    );
   });
 });
 
@@ -21,7 +23,10 @@ describe('checkingArr', () => {
   it('console.log Компьютер вытащил Орла for [1, 1]', () => {
     console.log = jest.fn();
     checkingArr([1, 1]);
-    expect(console.log).toHaveBeenNthCalledWith(1, 'Компьютер вытащил Орла'.blue);
+    expect(console.log).toHaveBeenNthCalledWith(
+      1,
+      'Компьютер вытащил Орла'.blue,
+    );
   });
   it('console.log Вы выиграли for [2, 2]', () => {
     console.log = jest.fn();

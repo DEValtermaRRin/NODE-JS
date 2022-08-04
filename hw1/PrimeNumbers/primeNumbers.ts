@@ -45,7 +45,7 @@ function renderNumbers(arr: number[]) {
 export const appNumbers = () => {
   console.log('Введите число:  ');
   rl.on('line', (answer: string) => {
-    let num = Math.round(Number(answer));
+    const num = Math.round(Number(answer));
     if (isNaN(num)) {
       console.log(colors.red('Вы ввели не число'));
       rl.close();

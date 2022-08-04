@@ -12,8 +12,7 @@ export const num = () => Math.round(Math.random() + 1);
 let arrToCheck: number[] = [];
 
 export function checkAnswer(answer: string) {
-  let userNum;
-  userNum = Number(answer);
+  const userNum = Number(answer);
   if (isNaN(userNum) && answer !== 'exit') {
     console.log(colors.red('Вы ввели не число. Игра окончена'));
     getGameRezults();
@@ -48,7 +47,7 @@ async function getGameRezults() {
   });
 }
 
-const appOrelReshka = () => {
+export const appOrelReshka = () => {
   // проверяем папку на наличие файла лога,
   // если нет - создаем, если есть - очищаем
   isFileExist('orel-reshka-log');

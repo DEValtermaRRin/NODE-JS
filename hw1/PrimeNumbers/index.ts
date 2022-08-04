@@ -1,1 +1,1 @@
-export { appNumbers } from './primeNumbers'
+export { appNumbers } from './primeNumbers';

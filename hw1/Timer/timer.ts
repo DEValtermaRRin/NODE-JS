@@ -1,63 +1,31 @@
 import readline from 'readline';
 import colors from 'colors';
 
+import { regexp } from '../../constants';
+import { getRightWord } from '../../functions';
+
 const rl = readline.createInterface({
   input: process.stdin,
 });
-
-const regexp = /^(0[1-9]|1\d|2\d|3[01])\-(0[1-9]|1[0-2])\-(19|20)\d{2}$/;
-const regOne = /^[234567890]1$/;
-const regTwo = /^[023456789][2-4]$/;
-
-const dictionary = {
-  rusDays: ['день', 'дня', 'дней'],
-  rusHours: ['час', 'часа', 'часов'],
-  rusMinutes: ['минута', 'минуты', 'минут'],
-  rusSeconds: ['секунда', 'секунды', 'секунд'],
-};
 
 export function dateParce(date: string): string {
   if (!regexp.test(date)) {
     console.log('Вы ввели неверный формат даты'.bgRed);
   }
-  let userDate = date.split('-');
+  const userDate = date.split('-');
   return `${userDate[1]} ${userDate[0]} ${userDate[2]} 00:00:00`;
 }
 
-export function checkNum(num: number): string {
-  return num < 10 ? `0${num}` : `${num}`;
-}
-
-export function renderDate(dd: number, hh: number, mm: number, ss: number): string {
-  let wordDay = '';
-  let wordHour = '';
-  let wordMin = '';
-  let wordSec = '';
-  const day = checkNum(dd);
-  const hour = checkNum(hh);
-  const min = checkNum(mm);
-  const sec = checkNum(ss);
-  if (regOne.test(day)) {
-    wordDay = dictionary.rusDays[0];
-  } else if (regTwo.test(day)) {
-    wordDay = dictionary.rusDays[1];
-  } else wordDay = dictionary.rusDays[2];
-  if (regOne.test(hour)) {
-    wordHour = dictionary.rusHours[0];
-  } else if (regTwo.test(hour)) {
-    wordHour = dictionary.rusHours[1];
-  } else wordHour = dictionary.rusHours[2];
-  if (regOne.test(min)) {
-    wordMin = dictionary.rusMinutes[0];
-  } else if (regTwo.test(min)) {
-    wordMin = dictionary.rusMinutes[1];
-  } else wordMin = dictionary.rusMinutes[2];
-  if (regOne.test(sec)) {
-    wordSec = dictionary.rusSeconds[0];
-  } else if (regTwo.test(sec)) {
-    wordSec = dictionary.rusSeconds[1];
-  } else wordSec = dictionary.rusSeconds[2];
-  return `До конца таймера осталось: ${dd} ${wordDay}, ${hh} ${wordHour} ${mm} ${wordMin} ${ss} ${wordSec}`;
+export function renderDate(dd: number, hh: number, mm: number, ss: number) {
+  const wordDay = getRightWord(dd, 'rusDays');
+  const wordHour = getRightWord(hh, 'rusHours');
+  const wordMin = getRightWord(mm, 'rusMinutes');
+  const wordSec = getRightWord(ss, 'rusSeconds');
+  console.log(
+    colors.green(
+      `До конца таймера осталось: ${dd} ${wordDay}, ${hh} ${wordHour} ${mm} ${wordMin} ${ss} ${wordSec}`,
+    ),
+  );
 }
 
 export const appTimer = () => {
@@ -71,7 +39,7 @@ export const appTimer = () => {
       const hours = time > 0 ? Math.floor(time / 1000 / 60 / 60) % 24 : 0;
       const minutes = time > 0 ? Math.floor(time / 1000 / 60) % 60 : 0;
       const seconds = time > 0 ? Math.floor(time / 1000) % 60 : 0;
-      console.log(renderDate(days, hours, minutes, seconds).green);
+      renderDate(days, hours, minutes, seconds);
       if (time <= 0) {
         console.log('Время истекло!'.red);
         clearInterval(timer);
