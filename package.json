@@ -14,7 +14,7 @@
   },
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.ts",
+    "start": "cross-env NODE_OPTIONS='--max-old-space-size=4096' nodemon index.ts",
     "test": "jest",
     "lint": "npx tsc --noEmit && npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
     "test:coverage": "jest --coverage --colors",
@@ -23,18 +23,25 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "colors": "^1.4.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^26.7.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "express": "^4.18.1",
     "gh-pages": "^4.0.0",
     "husky": "^8.0.1",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/inquirer": "^9.0.0",
     "@types/jest": "^28.1.6",
+    "@types/luxon": "^3.0.0",
+    "inquirer": "^8.2.4",
     "jest": "^28.1.3",
+    "luxon": "^3.0.1",
     "ts-jest": "^28.0.7",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
