@@ -1,1 +1,6 @@
 /node_modules
+*.log
+access.log
+/**/*.log
+/hw2/access.log
+nodemon.json

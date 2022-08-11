@@ -1,5 +1,6 @@
 import fs from 'fs';
-import { dictionary, regOne, regTwo } from './constants';
+import colors from 'colors'
+import { dictionary, regOne, regTwo, regIp } from './constants';
 
 // TODO попробовать на промисах
 export function createFileLog(name: string) {
@@ -32,9 +33,8 @@ export function gameResult(name: string) {
   const loose = rezult.split('Проигрыш\n').length - 1;
   const winWord = getRightWord(win, 'rusWin');
   const looseWord = getRightWord(loose, 'rusLoose');
-  console.log(
-    `Количество партий : ${movesCount}, из них ${win} - ${winWord} и ${loose} - ${looseWord}`
-      .blue,
+  console.log(colors.blue(
+    `Количество партий : ${movesCount}, из них ${win} - ${winWord} и ${loose} - ${looseWord}`)
   );
 }
 
@@ -63,4 +63,12 @@ export function getRightWord(num: number, line: string): string {
     }
   });
   return correctWord;
+}
+
+export function makeIp() {
+  return `${NUM(0, 256)}.${NUM(0, 256)}.${NUM(0, 256)}.${NUM(0, 256)}`
+}
+
+export const NUM = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min) + min)
 }
